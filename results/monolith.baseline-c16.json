@@ -1,0 +1,152 @@
+{
+  "variant": "monolith",
+  "scenario": "baseline-c16",
+  "title": "Happy path, 16 concurrent customers",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:22:42.499Z",
+  "concurrency": 16,
+  "durationMs": 20000,
+  "coldStartMs": 370,
+  "memory": {
+    "idleRssMb": 111,
+    "peakRssMb": 182,
+    "brokerRssMb": 0
+  },
+  "requests": 5602,
+  "completed": 5602,
+  "confirmed": 5602,
+  "rejected": 0,
+  "reasons": {},
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 279.7,
+  "confirmedPerSecond": 279.7,
+  "requestMs": {
+    "p50": 56.2,
+    "p95": 62.6,
+    "p99": 70.2
+  },
+  "e2eMs": {
+    "p50": 56.2,
+    "p95": 62.7,
+    "p99": 70.2
+  },
+  "serverMs": {
+    "p50": 53.9,
+    "p95": 58.7,
+    "p99": 63.9
+  },
+  "polls": 0,
+  "duplicatesSent": 0,
+  "drainMs": 22,
+  "timeline": [],
+  "series": [
+    {
+      "completed": 257,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 279,
+      "failed": 0
+    },
+    {
+      "completed": 280,
+      "failed": 0
+    },
+    {
+      "completed": 280,
+      "failed": 0
+    },
+    {
+      "completed": 289,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 282,
+      "failed": 0
+    },
+    {
+      "completed": 278,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 284,
+      "failed": 0
+    },
+    {
+      "completed": 276,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 263,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 16,
+      "failed": 0
+    }
+  ],
+  "invariants": {
+    "orders": 5602,
+    "byStatus": {
+      "CONFIRMED": 5602
+    },
+    "byReason": {},
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 5602,
+    "ok": true
+  }
+}

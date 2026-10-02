@@ -1,0 +1,159 @@
+{
+  "variant": "microservices",
+  "scenario": "slow-payment",
+  "title": "Payment provider takes 2 s per charge",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:35:48.845Z",
+  "concurrency": 32,
+  "durationMs": 20000,
+  "coldStartMs": 540,
+  "memory": {
+    "idleRssMb": 564,
+    "peakRssMb": 625,
+    "brokerRssMb": 21
+  },
+  "requests": 320,
+  "completed": 320,
+  "confirmed": 320,
+  "rejected": 0,
+  "reasons": {},
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 15.1,
+  "confirmedPerSecond": 15.1,
+  "requestMs": {
+    "p50": 6.1,
+    "p95": 92.2,
+    "p99": 231.6,
+    "max": 232.6
+  },
+  "e2eMs": {
+    "p50": 2082.9,
+    "p95": 2360.4,
+    "p99": 2416,
+    "max": 2416.9
+  },
+  "slowAnswers": 320,
+  "serverMs": {
+    "p50": 2050.7,
+    "p95": 2221.8,
+    "p99": 2259.6
+  },
+  "polls": 11965,
+  "duplicatesSent": 0,
+  "drainMs": 21,
+  "timeline": [],
+  "series": [
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 32,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 0
+    },
+    {
+      "completed": 20,
+      "failed": 0
+    },
+    {
+      "completed": 12,
+      "failed": 0
+    },
+    {
+      "completed": 7,
+      "failed": 0
+    },
+    {
+      "completed": 25,
+      "failed": 0
+    },
+    {
+      "completed": 5,
+      "failed": 0
+    },
+    {
+      "completed": 27,
+      "failed": 0
+    }
+  ],
+  "invariants": {
+    "orders": 320,
+    "byStatus": {
+      "CONFIRMED": 320
+    },
+    "byReason": {},
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 320,
+    "ok": true
+  }
+}

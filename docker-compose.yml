@@ -1,0 +1,180 @@
+# docker compose --profile monolith up --build --wait
+# docker compose --profile microservices up --build --wait
+
+name: tradeoff-lab
+
+x-app: &app
+  build: .
+  image: tradeoff-lab
+  restart: unless-stopped
+
+x-health: &health
+  interval: 2s
+  timeout: 2s
+  retries: 30
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    profiles: [monolith, microservices]
+    environment:
+      POSTGRES_USER: lab
+      POSTGRES_PASSWORD: lab
+    command: ['postgres', '-c', 'max_connections=300']
+    volumes:
+      - ./docker/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports: ['54329:5432']
+    healthcheck:
+      <<: *health
+      test: ['CMD', 'pg_isready', '-U', 'lab']
+
+  payment-provider:
+    <<: *app
+    profiles: [monolith, microservices]
+    command: ['node', 'dist/payment-provider/main.js']
+    environment:
+      PORT: '4010'
+    ports: ['4010:4010']
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4010/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  monolith:
+    <<: *app
+    profiles: [monolith]
+    command: ['node', 'dist/monolith/main.js']
+    environment:
+      PORT: '4000'
+      DATABASE_URL: postgres://lab:lab@postgres:5432/monolith
+      PAYMENT_URL: http://payment-provider:4010
+    ports: ['4000:4000']
+    depends_on:
+      postgres: { condition: service_healthy }
+      payment-provider: { condition: service_healthy }
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4000/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  nats:
+    image: nats:2.15-alpine
+    profiles: [microservices]
+    command: ['-js', '-sd', '/data', '-m', '8222']
+    ports: ['14222:4222']
+    healthcheck:
+      <<: *health
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:8222/healthz']
+
+  orders:
+    <<: *app
+    profiles: [microservices]
+    command: ['node', 'dist/microservices/orders/main.js']
+    environment:
+      PORT: '4101'
+      DATABASE_URL: postgres://lab:lab@postgres:5432/orders
+      NATS_URL: nats://nats:4222
+    depends_on: &ms-deps
+      postgres: { condition: service_healthy }
+      nats: { condition: service_healthy }
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4101/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  inventory:
+    <<: *app
+    profiles: [microservices]
+    command: ['node', 'dist/microservices/inventory/main.js']
+    environment:
+      PORT: '4102'
+      DATABASE_URL: postgres://lab:lab@postgres:5432/inventory
+      NATS_URL: nats://nats:4222
+    depends_on: *ms-deps
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4102/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  payments:
+    <<: *app
+    profiles: [microservices]
+    command: ['node', 'dist/microservices/payments/main.js']
+    environment:
+      PORT: '4103'
+      DATABASE_URL: postgres://lab:lab@postgres:5432/payments
+      NATS_URL: nats://nats:4222
+      PAYMENT_URL: http://payment-provider:4010
+    depends_on:
+      <<: *ms-deps
+      payment-provider: { condition: service_healthy }
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4103/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  notifications:
+    <<: *app
+    profiles: [microservices]
+    command: ['node', 'dist/microservices/notifications/main.js']
+    environment:
+      PORT: '4104'
+      DATABASE_URL: postgres://lab:lab@postgres:5432/notifications
+      NATS_URL: nats://nats:4222
+    depends_on: *ms-deps
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4104/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+
+  gateway:
+    <<: *app
+    profiles: [microservices]
+    command: ['node', 'dist/microservices/gateway/main.js']
+    environment:
+      PORT: '4100'
+      ORDERS_URL: http://orders:4101
+      INVENTORY_URL: http://inventory:4102
+    ports: ['4100:4100']
+    depends_on:
+      orders: { condition: service_healthy }
+      inventory: { condition: service_healthy }
+    healthcheck:
+      <<: *health
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4100/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]

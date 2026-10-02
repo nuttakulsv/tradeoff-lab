@@ -1,0 +1,78 @@
+{
+  "loc": {
+    "shared": 375,
+    "monolith": 411,
+    "microservices": 707
+  },
+  "deployableUnits": {
+    "monolith": 1,
+    "microservices": 5
+  },
+  "composeServices": {
+    "monolith": 3,
+    "microservices": 8
+  },
+  "appEnvVars": {
+    "monolith": 3,
+    "microservices": 16
+  },
+  "databases": {
+    "monolith": 1,
+    "microservices": 4
+  },
+  "brokers": {
+    "monolith": 0,
+    "microservices": 1
+  },
+  "exercises": {
+    "discount-code": {
+      "monolith": {
+        "files": [
+          {
+            "file": "src/monolith/orders/orders.service.ts",
+            "added": 12,
+            "removed": 1
+          },
+          {
+            "file": "src/shared/contract.ts",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/shared/orders-store.ts",
+            "added": 26,
+            "removed": 4
+          }
+        ],
+        "filesTouched": 3,
+        "linesChanged": 51
+      },
+      "microservices": {
+        "files": [
+          {
+            "file": "src/microservices/orders/main.ts",
+            "added": 9,
+            "removed": 1
+          },
+          {
+            "file": "src/microservices/orders/saga.ts",
+            "added": 12,
+            "removed": 9
+          },
+          {
+            "file": "src/shared/contract.ts",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/shared/orders-store.ts",
+            "added": 26,
+            "removed": 4
+          }
+        ],
+        "filesTouched": 4,
+        "linesChanged": 69
+      }
+    }
+  }
+}

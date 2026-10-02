@@ -1,0 +1,7 @@
+dist
+node_modules
+.lab
+results/*.json
+exercises/**/*.patch
+package-lock.json
+results/summary.md

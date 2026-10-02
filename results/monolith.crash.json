@@ -1,0 +1,213 @@
+{
+  "variant": "monolith",
+  "scenario": "crash",
+  "title": "kill -9 the inventory code at 8 s, restart at 13 s",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:31:47.232Z",
+  "concurrency": 16,
+  "durationMs": 30000,
+  "coldStartMs": 370,
+  "memory": {
+    "idleRssMb": 116,
+    "peakRssMb": 198,
+    "brokerRssMb": 0
+  },
+  "requests": 8426,
+  "completed": 6870,
+  "confirmed": 6870,
+  "rejected": 0,
+  "reasons": {},
+  "errors": 1556,
+  "errorRate": 18.47,
+  "throughput": 228.6,
+  "confirmedPerSecond": 228.6,
+  "requestMs": {
+    "p50": 56.1,
+    "p95": 63.2,
+    "p99": 71,
+    "max": 162.2
+  },
+  "e2eMs": {
+    "p50": 56.2,
+    "p95": 63.2,
+    "p99": 71,
+    "max": 162.2
+  },
+  "slowAnswers": 0,
+  "serverMs": {
+    "p50": 53.9,
+    "p95": 59.3,
+    "p99": 66.2
+  },
+  "polls": 0,
+  "duplicatesSent": 0,
+  "drainMs": 32,
+  "timeline": [
+    {
+      "label": "kill",
+      "atMs": 8011
+    },
+    {
+      "label": "restart",
+      "atMs": 13455
+    }
+  ],
+  "series": [
+    {
+      "completed": 241,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 276,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 278,
+      "failed": 0
+    },
+    {
+      "completed": 286,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 288
+    },
+    {
+      "completed": 0,
+      "failed": 272
+    },
+    {
+      "completed": 0,
+      "failed": 292
+    },
+    {
+      "completed": 0,
+      "failed": 298
+    },
+    {
+      "completed": 0,
+      "failed": 278
+    },
+    {
+      "completed": 128,
+      "failed": 128
+    },
+    {
+      "completed": 278,
+      "failed": 0
+    },
+    {
+      "completed": 282,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 275,
+      "failed": 0
+    },
+    {
+      "completed": 290,
+      "failed": 0
+    },
+    {
+      "completed": 283,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 276,
+      "failed": 0
+    },
+    {
+      "completed": 284,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 280,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 282,
+      "failed": 0
+    },
+    {
+      "completed": 16,
+      "failed": 0
+    }
+  ],
+  "outage": {
+    "killAtMs": 8011,
+    "restartedAtMs": 13455,
+    "errorsDuringOutage": 1540,
+    "recoveryMs": 5910
+  },
+  "invariants": {
+    "orders": 6886,
+    "byStatus": {
+      "CONFIRMED": 6870,
+      "REJECTED": 16
+    },
+    "byReason": {
+      "PAYMENT_UNAVAILABLE": 16
+    },
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 6902,
+    "ok": true
+  }
+}

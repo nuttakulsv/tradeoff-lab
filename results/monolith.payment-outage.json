@@ -1,0 +1,209 @@
+{
+  "variant": "monolith",
+  "scenario": "payment-outage",
+  "title": "Payment provider down from 5 s to 15 s",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:30:31.873Z",
+  "concurrency": 16,
+  "durationMs": 30000,
+  "coldStartMs": 423,
+  "memory": {
+    "idleRssMb": 110,
+    "peakRssMb": 178,
+    "brokerRssMb": 0
+  },
+  "requests": 5822,
+  "completed": 5822,
+  "confirmed": 5502,
+  "rejected": 320,
+  "reasons": {
+    "PAYMENT_UNAVAILABLE": 320
+  },
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 193.7,
+  "confirmedPerSecond": 183,
+  "requestMs": {
+    "p50": 56.6,
+    "p95": 476.4,
+    "p99": 498.3,
+    "max": 520.8
+  },
+  "e2eMs": {
+    "p50": 56.7,
+    "p95": 476.6,
+    "p99": 498.5,
+    "max": 520.9
+  },
+  "slowAnswers": 0,
+  "serverMs": {
+    "p50": 54.1,
+    "p95": 463.9,
+    "p99": 478
+  },
+  "polls": 0,
+  "duplicatesSent": 0,
+  "drainMs": 41,
+  "timeline": [
+    {
+      "label": "provider down",
+      "atMs": 5003
+    },
+    {
+      "label": "provider back",
+      "atMs": 15006
+    }
+  ],
+  "series": [
+    {
+      "completed": 243,
+      "failed": 0
+    },
+    {
+      "completed": 275,
+      "failed": 0
+    },
+    {
+      "completed": 285,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    },
+    {
+      "completed": 215,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 279,
+      "failed": 0
+    },
+    {
+      "completed": 281,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 280,
+      "failed": 0
+    },
+    {
+      "completed": 280,
+      "failed": 0
+    },
+    {
+      "completed": 279,
+      "failed": 0
+    },
+    {
+      "completed": 266,
+      "failed": 0
+    },
+    {
+      "completed": 272,
+      "failed": 0
+    },
+    {
+      "completed": 288,
+      "failed": 0
+    },
+    {
+      "completed": 266,
+      "failed": 0
+    },
+    {
+      "completed": 16,
+      "failed": 0
+    }
+  ],
+  "invariants": {
+    "orders": 5822,
+    "byStatus": {
+      "CONFIRMED": 5502,
+      "REJECTED": 320
+    },
+    "byReason": {
+      "PAYMENT_UNAVAILABLE": 320
+    },
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 6494,
+    "ok": true
+  }
+}

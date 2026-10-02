@@ -1,0 +1,132 @@
+{
+  "variant": "microservices",
+  "scenario": "duplicates",
+  "title": "Every request sent twice, every broker message delivered twice",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:28:03.726Z",
+  "concurrency": 16,
+  "durationMs": 15000,
+  "coldStartMs": 475,
+  "memory": {
+    "idleRssMb": 576,
+    "peakRssMb": 696,
+    "brokerRssMb": 49
+  },
+  "requests": 2093,
+  "completed": 2093,
+  "confirmed": 2093,
+  "rejected": 0,
+  "reasons": {},
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 138.5,
+  "confirmedPerSecond": 138.5,
+  "requestMs": {
+    "p50": 4.2,
+    "p95": 10.1,
+    "p99": 23.5
+  },
+  "e2eMs": {
+    "p50": 109.9,
+    "p95": 133.3,
+    "p99": 181.5
+  },
+  "serverMs": {
+    "p50": 91.8,
+    "p95": 103.7,
+    "p99": 123.6
+  },
+  "polls": 4287,
+  "duplicatesSent": 2093,
+  "drainMs": 20,
+  "timeline": [],
+  "series": [
+    {
+      "completed": 81,
+      "failed": 0
+    },
+    {
+      "completed": 144,
+      "failed": 0
+    },
+    {
+      "completed": 143,
+      "failed": 0
+    },
+    {
+      "completed": 144,
+      "failed": 0
+    },
+    {
+      "completed": 138,
+      "failed": 0
+    },
+    {
+      "completed": 144,
+      "failed": 0
+    },
+    {
+      "completed": 143,
+      "failed": 0
+    },
+    {
+      "completed": 146,
+      "failed": 0
+    },
+    {
+      "completed": 143,
+      "failed": 0
+    },
+    {
+      "completed": 137,
+      "failed": 0
+    },
+    {
+      "completed": 144,
+      "failed": 0
+    },
+    {
+      "completed": 144,
+      "failed": 0
+    },
+    {
+      "completed": 137,
+      "failed": 0
+    },
+    {
+      "completed": 141,
+      "failed": 0
+    },
+    {
+      "completed": 148,
+      "failed": 0
+    },
+    {
+      "completed": 16,
+      "failed": 0
+    }
+  ],
+  "invariants": {
+    "orders": 2093,
+    "byStatus": {
+      "CONFIRMED": 2093
+    },
+    "byReason": {},
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 4186,
+    "ok": true
+  }
+}

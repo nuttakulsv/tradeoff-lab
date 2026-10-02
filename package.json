@@ -1,0 +1,52 @@
+{
+  "name": "tradeoff-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The same order system built as a modular monolith and as event-driven microservices, measured side by side.",
+  "author": "nuttakulsv",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src harness contract test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "lab": "tsx harness/cli.ts",
+    "contract": "tsx harness/cli.ts contract all",
+    "bench": "tsx harness/cli.ts run all all && tsx harness/cli.ts stats && tsx harness/cli.ts report"
+  },
+  "dependencies": {
+    "@nats-io/jetstream": "^3.4.0",
+    "@nats-io/transport-node": "^3.4.0",
+    "@nestjs/common": "^12.1.2",
+    "@nestjs/core": "^12.1.2",
+    "@nestjs/event-emitter": "^12.0.1",
+    "@nestjs/platform-express": "^12.1.2",
+    "pg": "^8.23.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.1",
+    "@types/pg": "^8.23.1",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "oxlint": "^1.86.0",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuttakulsv/tradeoff-lab.git"
+  },
+  "homepage": "https://github.com/nuttakulsv/tradeoff-lab#readme"
+}

@@ -1,0 +1,117 @@
+{
+  "variant": "monolith",
+  "scenario": "hot-item",
+  "title": "100 mooncake boxes, 32 customers racing for them",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:23:15.795Z",
+  "concurrency": 32,
+  "durationMs": 10000,
+  "coldStartMs": 371,
+  "memory": {
+    "idleRssMb": 109,
+    "peakRssMb": 198,
+    "brokerRssMb": 0
+  },
+  "requests": 40085,
+  "completed": 40085,
+  "confirmed": 100,
+  "rejected": 39985,
+  "reasons": {
+    "OUT_OF_STOCK": 39985
+  },
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 4006.2,
+  "confirmedPerSecond": 10,
+  "requestMs": {
+    "p50": 7.4,
+    "p95": 10.9,
+    "p99": 14.4
+  },
+  "e2eMs": {
+    "p50": 7.4,
+    "p95": 10.9,
+    "p99": 14.4
+  },
+  "serverMs": {
+    "p50": 2.5,
+    "p95": 3.8,
+    "p99": 5.4
+  },
+  "polls": 0,
+  "duplicatesSent": 0,
+  "drainMs": 24,
+  "timeline": [],
+  "series": [
+    {
+      "completed": 100,
+      "failed": 2316
+    },
+    {
+      "completed": 0,
+      "failed": 3808
+    },
+    {
+      "completed": 0,
+      "failed": 4191
+    },
+    {
+      "completed": 0,
+      "failed": 4284
+    },
+    {
+      "completed": 0,
+      "failed": 4309
+    },
+    {
+      "completed": 0,
+      "failed": 4308
+    },
+    {
+      "completed": 0,
+      "failed": 4312
+    },
+    {
+      "completed": 0,
+      "failed": 3930
+    },
+    {
+      "completed": 0,
+      "failed": 4155
+    },
+    {
+      "completed": 0,
+      "failed": 4340
+    },
+    {
+      "completed": 0,
+      "failed": 32
+    }
+  ],
+  "invariants": {
+    "orders": 40085,
+    "byStatus": {
+      "CONFIRMED": 100,
+      "REJECTED": 39985
+    },
+    "byReason": {
+      "OUT_OF_STOCK": 39985
+    },
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 100,
+    "ok": true
+  }
+}

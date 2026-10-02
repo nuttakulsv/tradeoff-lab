@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - name: Contract tests against both variants
+        run: npm run lab -- contract all
+      - name: Exercise patches still apply and pass the contract
+        run: |
+          for variant in monolith microservices; do
+            git apply exercises/discount-code/$variant.patch
+            npm run build
+            npm run lab -- contract $variant
+            git checkout -- src contract
+            git clean -fdq contract
+          done
+          npm run build
+      - name: Quick scenario smoke run
+        run: npm run lab -- run all baseline-c16 --quick
+
+  compose:
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: monolith
+            port: 4000
+          - variant: microservices
+            port: 4100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: docker compose --profile ${{ matrix.variant }} up --build --wait --wait-timeout 300
+      - name: Contract tests against the containers
+        run: npx vitest run -c vitest.contract.config.ts
+        env:
+          API_URL: http://127.0.0.1:${{ matrix.port }}
+          PAYMENT_PROVIDER_URL: http://127.0.0.1:4010
+      - if: failure()
+        run: docker compose --profile ${{ matrix.variant }} logs

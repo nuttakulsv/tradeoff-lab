@@ -1,0 +1,25 @@
+Description:
+The same order system built as a modular monolith and as event-driven microservices, then load-tested and broken on purpose. Numbers instead of opinions.
+
+Website:
+(none)
+
+Topics:
+software-architecture
+microservices
+modular-monolith
+event-driven-architecture
+saga-pattern
+outbox-pattern
+idempotency
+nats
+jetstream
+nestjs
+postgresql
+benchmark
+load-testing
+chaos-engineering
+distributed-systems
+system-design
+tech-lead
+typescript

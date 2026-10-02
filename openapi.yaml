@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: tradeoff-lab orders API
+  version: 0.1.0
+  description: |
+    The public API both variants implement. The contract tests in contract/ check it from the
+    outside. The variants are allowed to differ in one place: the monolith finishes an order
+    before it answers (201, final status), the event-driven variant accepts it and answers 202
+    with status PENDING. Clients poll GET /orders/{id} until the status is final.
+servers:
+  - url: http://localhost:4000
+    description: Modular monolith
+  - url: http://localhost:4100
+    description: Microservices (gateway)
+paths:
+  /products:
+    get:
+      summary: List products with price and available stock
+      responses:
+        '200':
+          description: Products sorted by SKU
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Product' }
+  /orders:
+    post:
+      summary: Place an order
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          description: Repeating a request with the same key returns the same order and charges once.
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PlaceOrder' }
+      responses:
+        '201':
+          description: Monolith. The order is already CONFIRMED or REJECTED.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '202':
+          description: Microservices. The order is PENDING; poll it.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '200':
+          description: An order with this Idempotency-Key already exists.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '400':
+          description: Invalid body
+    get:
+      summary: List orders, newest first
+      parameters:
+        - name: status
+          in: query
+          schema: { $ref: '#/components/schemas/OrderStatus' }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        '200':
+          description: Orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Order' }
+  /orders/{id}:
+    get:
+      summary: Get one order
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: The order
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '400':
+          description: id is not a UUID
+        '404':
+          description: No such order
+  /orders/{id}/cancel:
+    post:
+      summary: Cancel a confirmed order, refund it and put the stock back
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Cancelled (or already cancelled)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '202':
+          description: CANCELLING. The refund is in progress; poll the order.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '404':
+          description: No such order
+        '409':
+          description: The order is not CONFIRMED
+components:
+  schemas:
+    Product:
+      type: object
+      required: [sku, name, price, available]
+      properties:
+        sku: { type: string, examples: [LATTE] }
+        name: { type: string }
+        price: { type: integer, description: Satang (1/100 THB) }
+        available: { type: integer }
+    PlaceOrder:
+      type: object
+      required: [customerId, items]
+      properties:
+        customerId: { type: string, minLength: 1, maxLength: 64 }
+        items:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items:
+            type: object
+            required: [sku, qty]
+            properties:
+              sku: { type: string, minLength: 1, maxLength: 64 }
+              qty: { type: integer, minimum: 1, maximum: 1000 }
+    OrderStatus:
+      type: string
+      enum: [PENDING, CONFIRMED, REJECTED, CANCELLING, CANCELLED]
+    Order:
+      type: object
+      required: [id, customerId, status, reason, items, amount, createdAt, updatedAt]
+      properties:
+        id: { type: string, format: uuid }
+        customerId: { type: string }
+        status: { $ref: '#/components/schemas/OrderStatus' }
+        reason:
+          type: [string, 'null']
+          enum: [OUT_OF_STOCK, UNKNOWN_SKU, PAYMENT_DECLINED, PAYMENT_UNAVAILABLE, null]
+        items:
+          type: array
+          description: Lines merged by SKU and sorted. unitPrice is null until stock is reserved.
+          items:
+            type: object
+            required: [sku, qty, unitPrice]
+            properties:
+              sku: { type: string }
+              qty: { type: integer }
+              unitPrice: { type: [integer, 'null'] }
+        amount: { type: [integer, 'null'], description: Satang, null until priced }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }

@@ -1,0 +1,132 @@
+{
+  "variant": "monolith",
+  "scenario": "duplicates",
+  "title": "Every request sent twice, every broker message delivered twice",
+  "quick": false,
+  "machine": {
+    "cpu": "Apple M2",
+    "cores": 8,
+    "memoryGb": 8,
+    "os": "darwin 24.3.0",
+    "node": "v22.17.0"
+  },
+  "ranAt": "2026-10-02T18:24:57.865Z",
+  "concurrency": 16,
+  "durationMs": 15000,
+  "coldStartMs": 529,
+  "memory": {
+    "idleRssMb": 114,
+    "peakRssMb": 167,
+    "brokerRssMb": 0
+  },
+  "requests": 3747,
+  "completed": 3747,
+  "confirmed": 3747,
+  "rejected": 0,
+  "reasons": {},
+  "errors": 0,
+  "errorRate": 0,
+  "throughput": 248.6,
+  "confirmedPerSecond": 248.6,
+  "requestMs": {
+    "p50": 55.2,
+    "p95": 61.4,
+    "p99": 70.8
+  },
+  "e2eMs": {
+    "p50": 55.6,
+    "p95": 109.1,
+    "p99": 115.7
+  },
+  "serverMs": {
+    "p50": 53.2,
+    "p95": 57.9,
+    "p99": 63.5
+  },
+  "polls": 564,
+  "duplicatesSent": 3747,
+  "drainMs": 40,
+  "timeline": [],
+  "series": [
+    {
+      "completed": 208,
+      "failed": 0
+    },
+    {
+      "completed": 265,
+      "failed": 0
+    },
+    {
+      "completed": 250,
+      "failed": 0
+    },
+    {
+      "completed": 258,
+      "failed": 0
+    },
+    {
+      "completed": 244,
+      "failed": 0
+    },
+    {
+      "completed": 250,
+      "failed": 0
+    },
+    {
+      "completed": 250,
+      "failed": 0
+    },
+    {
+      "completed": 255,
+      "failed": 0
+    },
+    {
+      "completed": 253,
+      "failed": 0
+    },
+    {
+      "completed": 251,
+      "failed": 0
+    },
+    {
+      "completed": 246,
+      "failed": 0
+    },
+    {
+      "completed": 246,
+      "failed": 0
+    },
+    {
+      "completed": 241,
+      "failed": 0
+    },
+    {
+      "completed": 259,
+      "failed": 0
+    },
+    {
+      "completed": 255,
+      "failed": 0
+    },
+    {
+      "completed": 16,
+      "failed": 0
+    }
+  ],
+  "invariants": {
+    "orders": 3747,
+    "byStatus": {
+      "CONFIRMED": 3747
+    },
+    "byReason": {},
+    "stuck": 0,
+    "duplicateOrders": 0,
+    "stockLeaked": 0,
+    "stockOversold": 0,
+    "chargedWithoutOrder": 0,
+    "confirmedWithoutCharge": 0,
+    "missingNotifications": 0,
+    "providerRequests": 3747,
+    "ok": true
+  }
+}

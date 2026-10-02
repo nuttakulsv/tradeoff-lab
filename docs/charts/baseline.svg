@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="380" viewBox="0 0 780 380" role="img" aria-label="Happy path: same orders, two architectures">
+<rect width="780" height="380" rx="12" fill="#fcfcfb"/>
+<text x="24" y="34" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" font-weight="600" fill="#0b0b0b">Happy path: same orders, two architectures</text>
+<text x="24" y="54" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#52514e" >Apple M2, 8 cores, 8 GB, Node v22.17.0. Payment provider answers in 50 ms.</text>
+<rect x="24" y="73" width="10" height="10" rx="2" fill="#2a78d6"/><text x="40" y="82" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b0b0b">Modular monolith</text><rect x="214" y="73" width="10" height="10" rx="2" fill="#eb6834"/><text x="230" y="82" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b0b0b">Microservices + events</text>
+<text x="40" y="126" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b0b0b" font-weight="600">Confirmed orders per second</text>
+<line x1="80" x2="360" y1="340" y2="340" stroke="#c3c2b7" stroke-width="1"/>
+<text x="74" y="344" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">0</text>
+<line x1="80" x2="360" y1="290" y2="290" stroke="#e1e0d9" stroke-width="1"/>
+<text x="74" y="294" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">500</text>
+<line x1="80" x2="360" y1="240" y2="240" stroke="#e1e0d9" stroke-width="1"/>
+<text x="74" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">1000</text>
+<line x1="80" x2="360" y1="190" y2="190" stroke="#e1e0d9" stroke-width="1"/>
+<text x="74" y="194" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">1500</text>
+<line x1="80" x2="360" y1="140" y2="140" stroke="#e1e0d9" stroke-width="1"/>
+<text x="74" y="144" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">2000</text>
+<path d="M101.66666666666666,340 V340 Q101.66666666666666,338.46 103.20666666666666,338.46 H124.12666666666665 Q125.66666666666666,338.46 125.66666666666666,340 V340 Z" fill="#2a78d6"><title>Modular monolith, 1 customer: 15.4 orders/s</title></path>
+<text x="113.66666666666666" y="332.46" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">15</text>
+<path d="M127.66666666666666,340 V340 Q127.66666666666666,339 128.66666666666666,339 H150.66666666666666 Q151.66666666666666,339 151.66666666666666,340 V340 Z" fill="#eb6834"><title>Microservices + events, 1 customer: 8.1 orders/s</title></path>
+<text x="139.66666666666666" y="333" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">8</text>
+<text x="126.66666666666666" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">1 customer</text>
+<path d="M194.99999999999997,340 V316.03 Q194.99999999999997,312.03 198.99999999999997,312.03 H214.99999999999997 Q218.99999999999997,312.03 218.99999999999997,316.03 V340 Z" fill="#2a78d6"><title>Modular monolith, 16 customers: 279.7 orders/s</title></path>
+<text x="206.99999999999997" y="306.03" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">280</text>
+<path d="M220.99999999999997,340 V330.16 Q220.99999999999997,326.16 224.99999999999997,326.16 H240.99999999999997 Q244.99999999999997,326.16 244.99999999999997,330.16 V340 Z" fill="#eb6834"><title>Microservices + events, 16 customers: 138.4 orders/s</title></path>
+<text x="232.99999999999997" y="320.16" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">138</text>
+<text x="219.99999999999997" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">16 customers</text>
+<path d="M288.3333333333333,340 V230.01 Q288.3333333333333,226.01 292.3333333333333,226.01 H308.3333333333333 Q312.3333333333333,226.01 312.3333333333333,230.01 V340 Z" fill="#2a78d6"><title>Modular monolith, 64 customers: 1139.9 orders/s</title></path>
+<text x="300.3333333333333" y="220.01" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">1140</text>
+<path d="M314.3333333333333,340 V298.37 Q314.3333333333333,294.37 318.3333333333333,294.37 H334.3333333333333 Q338.3333333333333,294.37 338.3333333333333,298.37 V340 Z" fill="#eb6834"><title>Microservices + events, 64 customers: 456.3 orders/s</title></path>
+<text x="326.3333333333333" y="288.37" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">456</text>
+<text x="313.3333333333333" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">64 customers</text><text x="420" y="126" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b0b0b" font-weight="600">Time to a final answer, p95 (ms)</text>
+<line x1="460" x2="740" y1="340" y2="340" stroke="#c3c2b7" stroke-width="1"/>
+<text x="454" y="344" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">0</text>
+<line x1="460" x2="740" y1="290" y2="290" stroke="#e1e0d9" stroke-width="1"/>
+<text x="454" y="294" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">50</text>
+<line x1="460" x2="740" y1="240" y2="240" stroke="#e1e0d9" stroke-width="1"/>
+<text x="454" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">100</text>
+<line x1="460" x2="740" y1="190" y2="190" stroke="#e1e0d9" stroke-width="1"/>
+<text x="454" y="194" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">150</text>
+<line x1="460" x2="740" y1="140" y2="140" stroke="#e1e0d9" stroke-width="1"/>
+<text x="454" y="144" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="end" fill="#898781" font-variant-numeric="tabular-nums">200</text>
+<path d="M481.6666666666667,340 V273.7 Q481.6666666666667,269.7 485.6666666666667,269.7 H501.6666666666667 Q505.6666666666667,269.7 505.6666666666667,273.7 V340 Z" fill="#2a78d6"><title>Modular monolith, 1 customer: 70.3 ms</title></path>
+<text x="493.6666666666667" y="263.7" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">70</text>
+<path d="M507.6666666666667,340 V170.8 Q507.6666666666667,166.8 511.6666666666667,166.8 H527.6666666666667 Q531.6666666666667,166.8 531.6666666666667,170.8 V340 Z" fill="#eb6834"><title>Microservices + events, 1 customer: 173.2 ms</title></path>
+<text x="519.6666666666667" y="160.8" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">173</text>
+<text x="506.6666666666667" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">1 customer</text>
+<path d="M575,340 V281.3 Q575,277.3 579,277.3 H595 Q599,277.3 599,281.3 V340 Z" fill="#2a78d6"><title>Modular monolith, 16 customers: 62.7 ms</title></path>
+<text x="587" y="271.3" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">63</text>
+<path d="M601,340 V189.4 Q601,185.4 605,185.4 H621 Q625,185.4 625,189.4 V340 Z" fill="#eb6834"><title>Microservices + events, 16 customers: 154.6 ms</title></path>
+<text x="613" y="179.4" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">155</text>
+<text x="600" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">16 customers</text>
+<path d="M668.3333333333333,340 V276.2 Q668.3333333333333,272.2 672.3333333333333,272.2 H688.3333333333333 Q692.3333333333333,272.2 692.3333333333333,276.2 V340 Z" fill="#2a78d6"><title>Modular monolith, 64 customers: 67.8 ms</title></path>
+<text x="680.3333333333333" y="266.2" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">68</text>
+<path d="M694.3333333333333,340 V153 Q694.3333333333333,149 698.3333333333333,149 H714.3333333333333 Q718.3333333333333,149 718.3333333333333,153 V340 Z" fill="#eb6834"><title>Microservices + events, 64 customers: 191 ms</title></path>
+<text x="706.3333333333333" y="143" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"  text-anchor="middle" font-size="11" fill="#52514e" font-variant-numeric="tabular-nums">191</text>
+<text x="693.3333333333333" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#898781">64 customers</text>
+</svg>
